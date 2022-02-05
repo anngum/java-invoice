@@ -17,6 +17,10 @@ public class Invoice {
     }
 
     public void addProduct(Product product, Integer quantity) {
+
+        if (quantity.intValue() <= 0) {
+            throw new IllegalArgumentException("quantity cannot be less than or equal to zero");
+        }
         this.products.put(product,quantity);
     }
 
