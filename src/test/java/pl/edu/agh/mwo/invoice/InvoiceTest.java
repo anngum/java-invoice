@@ -154,4 +154,25 @@ public class InvoiceTest {
                 "Liczba pozycji: 2";
         Assert.assertEquals(invoicePrint, invoicePrintCorrect);
     }
+    @Test
+    public void testForDuplicatName() {
+        Product testProduct = new OtherProduct("Pinezka", new BigDecimal("0.01"));
+        invoice.addProduct(testProduct, 1000);
+        invoice.addProduct(testProduct, 100);
+
+        int productQuantity = invoice.getQuantity(testProduct);
+
+        Assert.assertThat(productQuantity, Matchers.comparesEqualTo(1100));
+    }
+
+    @Test
+    public void testForDuplicatNumberOfPositions() {
+        Product testProduct = new OtherProduct("Chipsy", new BigDecimal("10"));
+        invoice.addProduct(testProduct, 10);
+        invoice.addProduct(testProduct, 1);
+
+        int numberOfPositions = invoice.getNumberOfPositions();
+
+        Assert.assertThat(numberOfPositions, Matchers.comparesEqualTo(1));
+    }
 }

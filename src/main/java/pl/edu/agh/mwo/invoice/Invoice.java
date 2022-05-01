@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
@@ -19,8 +20,14 @@ public class Invoice {
         if (product == null || quantity <= 0) {
             throw new IllegalArgumentException();
         }
+        if (products.get(product) != null) {
+            Integer currentQuantity = products.get(product);
+            quantity += currentQuantity;
+
+        }
         products.put(product, quantity);
     }
+
 
     public BigDecimal getNetTotal() {
         BigDecimal totalNet = BigDecimal.ZERO;
@@ -63,5 +70,14 @@ public class Invoice {
         }
         print += "Liczba pozycji: " + n;
         return print;
+    }
+
+    public int getQuantity(Product product) {
+
+        return products.get(product);
+    }
+
+    public int getNumberOfPositions() {
+        return products.size();
     }
 }
