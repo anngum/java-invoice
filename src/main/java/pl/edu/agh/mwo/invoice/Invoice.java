@@ -2,13 +2,14 @@ package pl.edu.agh.mwo.invoice;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
     private String number = (int) (100 * Math.random()) + "/2022";
-    private Map<Product, Integer> products = new HashMap<Product, Integer>();
+    private LinkedHashMap<Product, Integer> products = new LinkedHashMap<Product, Integer>();
 
     public void addProduct(Product product) {
         addProduct(product, 1);
