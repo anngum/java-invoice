@@ -142,4 +142,16 @@ public class InvoiceTest {
                 "Liczba pozycji: 1";
         Assert.assertEquals(invoicePrint, invoicePrintCorrect);
     }
+    @Test
+    public void testPrintInvoiceMorePosition() {
+        invoice.addProduct(new TaxFreeProduct("Kubek", new BigDecimal("5")), 2);
+        invoice.addProduct(new DairyProduct("Kozi Serek", new BigDecimal("10")), 3);
+        String invoicePrint = invoice.printInvoice();
+
+        String invoicePrintCorrect = invoice.getNumber()+"\r\n"+
+                "Kubek\t2\t5\r\n"+
+                "Kozi Serek\t3\t10\r\n"+
+                "Liczba pozycji: 2";
+        Assert.assertEquals(invoicePrint, invoicePrintCorrect);
+    }
 }
