@@ -3,10 +3,11 @@ package pl.edu.agh.mwo.invoice;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
+
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
-    private String number = (int) (100*Math.random())+"/2022";;
+    private String number = (int) (100 * Math.random()) + "/2022";
     private Map<Product, Integer> products = new HashMap<Product, Integer>();
 
     public void addProduct(Product product) {
@@ -48,18 +49,18 @@ public class Invoice {
     }
 
     public String printInvoice() {
-        String print = this.getNumber()+"\r\n";
-        int n=0;
+        String print = this.getNumber() + "\r\n";
+        int n = 0;
         for (Product product : products.keySet()) {
-            print+= product.getName()+"\t";
-            print+=products.get(product)+"\t";
-            print+= product.getPrice()+"\r\n";
+            print += product.getName() + "\t";
+            print += products.get(product) + "\t";
+            print += product.getPrice() + "\r\n";
 
             n++;
 
 
         }
-        print+="Liczba pozycji: "+n;
+        print += "Liczba pozycji: " + n;
         return print;
     }
 }
