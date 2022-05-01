@@ -6,6 +6,7 @@ import java.util.Map;
 import pl.edu.agh.mwo.invoice.product.Product;
 
 public class Invoice {
+    private String number = Math.random()+"/2022";;
     private Map<Product, Integer> products = new HashMap<Product, Integer>();
 
     public void addProduct(Product product) {
@@ -39,5 +40,10 @@ public class Invoice {
             totalGross = totalGross.add(product.getPriceWithTax().multiply(quantity));
         }
         return totalGross;
+    }
+
+
+    public String getNumber() {
+        return number;
     }
 }
