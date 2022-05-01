@@ -131,4 +131,15 @@ public class InvoiceTest {
 
         Assert.assertThat(invoice.getNumber(), Matchers.not(Matchers.isEmptyOrNullString()));
     }
+
+    @Test
+    public void testPrintInvoiceOnePosition() {
+        invoice.addProduct(new TaxFreeProduct("Kubek", new BigDecimal("5")), 2);
+        String invoicePrint = invoice.printInvoice();
+
+        String invoicePrintCorrect = invoice.getNumber()+"\r\n"+
+                "Kubek\t2\t5\r\n"+
+                "Liczba pozycji: 1";
+        Assert.assertEquals(invoicePrint, invoicePrintCorrect);
+    }
 }
